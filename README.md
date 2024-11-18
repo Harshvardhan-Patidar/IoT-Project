@@ -42,5 +42,5 @@ This project is open-source and available under the MIT License.
 
 ---
 
-**Code By:- Harshvardhan Patidar**
+**Code By:- Harshvardhan Patidar**  -> 
 **Design by:-** Our Team "Beta"

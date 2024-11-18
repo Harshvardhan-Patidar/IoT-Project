@@ -4,18 +4,18 @@
 #include <HTTPClient.h>
 
 
-const char* ssid = "HARSH";   // your network SSID (name) 
-const char* password = "harsh@1234";   // your network password
+const char* ssid = "WiFi Username";    
+const char* password = "Password";   
 
-const String accountSID = "ACa3110760528872b0d38890c5355f149a"; // Your Twilio Account SID
-const String authToken = "4e58d91615e3544ab3be39fcbadcb505"; // Your Twilio Auth Token
-const String fromNumber = "+14404901486"; // Your Twilio phone number
-const String toNumber = "+919893538777"; // The recipient's phone number
+const String accountSID = "SID Id"; // Your Twilio Account SID
+const String authToken = "API"; // Your Twilio Auth Token
+const String fromNumber = "Third Party Phone Number"; // Your Twilio phone number
+const String toNumber = "Your Number"; // The recipient's phone number
 
 WiFiClient  client;
 
-unsigned long myChannelNumber = 2740653;
-const char * myWriteAPIKey = "VQ361GGV40A0TZY5";
+unsigned long myChannelNumber = ****; //Thingspeak channel number
+const char * myWriteAPIKey = "Thingspeak API key";
 
 // Timer variables
 unsigned long lastTime = 0;
@@ -126,19 +126,16 @@ if (red < 50 && green < 50 && blue < 50) {
     Serial.println("Clear/Pure Petrol");
 } 
 else if (red > green && red > blue && red < 100 && green < 50 && blue < 50) {
-    Serial.println("Yellow Petrol"); 
-    sendSMS("Impure Petrol"); 
+    Serial.println("Yellow Petrol");  
 } 
 else if (blue > green && blue > red && blue > 50 && blue < 150) {
     Serial.println("Pale Blue Petrol");
-    sendSMS("Impure Petrol");  
 } 
 else if (green > red && green > blue && green < 100 && red < 50 && blue < 50) {
-    Serial.println("Greenish Petrol"); 
-    sendSMS("Impure Petrol"); 
+    Serial.println("Greenish Petrol");
 } 
 else if (red > green && red > blue && red > 100 && green < 100 && blue < 100) {
-    sendSMS("Impure Petrol");  
+      Serial.println("Brownish Petrol");
 }
 
 else if (red < 40 && green < 40 && blue < 40) {
@@ -192,7 +189,7 @@ void levelDetect(){
         Serial.print("Fuel Level Sensor Value: ");
         Serial.println(currentFuelLevel);
 
-        if (distance > ultrasonicThreshold) {
+        if ((previousFuelLevel - currentFuelLevel > fuelLevelThreshold) || (distance > ultrasonicThreshold)) {
             Serial.println("ALERT: Possible Fuel Theft or Leak Detected!");
             sendSMS("Theft Detected");
         }
